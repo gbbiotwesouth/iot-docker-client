@@ -1,0 +1,10 @@
+version: '2.1'
+
+services:
+  iot-docker-client:
+    image: iot-docker-client
+    build: .
+    environment:
+      NODE_ENV: development
+    ## set your startup file here
+    command: node --inspect app.js

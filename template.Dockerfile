@@ -4,6 +4,7 @@ FROM node:10-slim
 ENV ID_SCOPE '<IOTC Scope ID>'
 ENV IOTC_SAS_KEY '<ITOC Primary or Secondary SAS Key>'
 ENV DEVICE_ID '<IOTC Device ID>'
+ENV DEVICE_METHODS '<comma separated list of methods>'
 ENV MQTT_BROKER '<MQTT Broker address>'
 ENV MQTT_SUBSCRIBE_TOPIC '<MQTT Topic>'
 ENV MQTT_PUBLISH_TOPIC '<MQTT Topic>'

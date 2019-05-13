@@ -107,7 +107,7 @@ function processMQTTMessage(twin, message){
   // Properties
   if (data.properties)
   {
-    twin.properties.reported.update(JSON.stringify(data.properties), (err) => console.log(`Sent update for properties: ` +
+    twin.properties.reported.update(data.properties, (err) => console.log(`Sent update for properties: ` +
     (err ? `error: ${err.toString()}` : `status: success`)));
   }
   // Telemetry

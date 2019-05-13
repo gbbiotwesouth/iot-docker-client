@@ -101,7 +101,7 @@ async function getDeviceHub(environment) {
 async function getRegistrationSasToken(environment) {
     const uri = encodeURIComponent(`${environment.idScope}/registrations/${environment.deviceId}`);
     const ttl = Math.round(Date.now() / 1000) + registrationSasTtl;
-    const signature = crypto.createHmac('sha256', new Buffer(await getDeviceKey(environment), 'base64'))
+    const signature = crypto.createHmac('sha256', Buffer.from(await getDeviceKey(environment), 'base64'))
         .update(`${uri}\n${ttl}`)
         .digest('base64');
     return`SharedAccessSignature sr=${uri}&sig=${encodeURIComponent(signature)}&skn=registration&se=${ttl}`;
@@ -116,7 +116,7 @@ async function getDeviceKey(environment) {
         return deviceCache[deviceId].deviceKey;
     }
 
-    const key = crypto.createHmac('SHA256', new Buffer(environment.primaryKey, 'base64'))
+    const key = crypto.createHmac('SHA256', Buffer.from(environment.primaryKey, 'base64'))
         .update(deviceId)
         .digest()
         .toString('base64');

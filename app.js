@@ -40,7 +40,7 @@ function handleSettings(twin) {
         twin.properties.reported.update(patch, (err) => console.log(`Sent setting update for ${setting}; ` +
           (err ? `error: ${err.toString()}` : `status: success`)));
         // Send device twin changes to MQTT broker, topic = setting, content = value
-        mqttClient.publish(mqttPublishTopic + '/' + setting, newValue);
+        mqttClient.publish(environment.mqttPublishTopic + '/' + setting, newValue);
         }
     }
   });
@@ -51,7 +51,7 @@ function onCommand(request, response) {
   // Display console info
   console.log(' * Device method received: %s', request.methodName);
   // publish method to MQTT Broker using methodname as topic and payload as content
-  mqttClient.publish(mqttPublishTopic + '/' + request.methodName, JSON.stringify(request.payload));
+  mqttClient.publish(environment.mqttPublishTopic + '/' + request.methodName, JSON.stringify(request.payload));
   // Respond with succes (as we can't wait for the actual response)
   response.send(10, 'Success', function (errorMessage) {});
 }

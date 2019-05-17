@@ -60,6 +60,7 @@ async function getDeviceHub(environment) {
 
     try {
         console.log('[HTTP] Initiating device registration');
+        console.log('Enviroment: %s', JSON.stringify(environment));
         const response = await request(registrationOptions);
 
         if (response.status !== 'assigning' || !response.operationId) {
